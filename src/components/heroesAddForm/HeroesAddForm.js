@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import { useHttp } from '../../hooks/http.hook';
 import { heroCreated } from '../../actions';
+import { useSelector } from 'react-redux';
 
 // Задача для этого компонента:
 // Реализовать создание нового героя с введенными данными. Он должен попадать
@@ -19,6 +20,7 @@ const HeroesAddForm = () => {
   const [heroDescr, setHeroDescr] = useState('');
   const [heroElement, setHeroElement] = useState('');
 
+  const { filters, filtersLoadingStatus } = useSelector(state => state);
   const dispatch = useDispatch();
   const { request } = useHttp();
 
@@ -42,6 +44,24 @@ const HeroesAddForm = () => {
         setHeroElement('');
       })
       .catch(err => console.log(err))
+  }
+
+  const renderFilters = (filters, status) => {
+    if (status === 'loading') {
+      return <option>Загрузка элементов</option>
+    } else if (status === 'error') {
+      return <option>Ошибка загрузки</option>
+    }
+
+    if (filters && filters.length > 0) {
+      return filters.map(({name, label}) => {
+        // eslint-disable-next-line
+        if (name === 'all') return;
+
+        return <option key={name} value={name}>{label}</option>
+    })
+    }
+
   }
 
   return (
@@ -82,10 +102,7 @@ const HeroesAddForm = () => {
           id="element"
           name="element">
           <option >Я владею элементом...</option>
-          <option value="fire">Огонь</option>
-          <option value="water">Вода</option>
-          <option value="wind">Ветер</option>
-          <option value="earth">Земля</option>
+          {renderFilters(filters, filtersLoadingStatus)}
         </select>
       </div>
 

@@ -26,8 +26,6 @@ const HeroesFilters = () => {
     // eslint-disable-next-line
   }, []);
 
-  console.log(filters, activeFilter);
-
   if (filtersLoadingStatus === 'loading') {
     return <Spinner />
   } else if (filtersLoadingStatus === 'error') {

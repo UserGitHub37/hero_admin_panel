@@ -33,8 +33,6 @@ const HeroesAddForm = () => {
       element: heroElement
     }
 
-    console.log(newHero);
-
     request("http://localhost:3001/heroes", "POST", JSON.stringify(newHero))
       .then(res => console.log(res, 'Hero added'))
       .then(() => {

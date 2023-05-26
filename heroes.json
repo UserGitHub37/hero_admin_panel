@@ -19,16 +19,16 @@
       "element": "water"
     },
     {
-      "id": "76206aea-b07f-4fb3-a054-b66f4f6f79eb",
-      "name": "Земляной",
-      "description": "Копать",
-      "element": "earth"
-    },
-    {
       "id": "48585d81-9ece-46c6-bf69-04428b6d6731",
       "name": "Водяной",
       "description": "Плавать и нырять",
       "element": "water"
+    },
+    {
+      "id": "b7b2547d-3bbb-4b03-85d1-6c7387f54790",
+      "name": "Земляной",
+      "description": "Копать",
+      "element": "earth"
     }
   ],
   "filters": [
